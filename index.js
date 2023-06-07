@@ -15,7 +15,7 @@ let maxPage = 1;
 let page = 1;
 const searchQuery = "";
 
-async function fetchCharaters(page = 1) {
+async function fetchCharaters(page) {
   try {
     const response = await fetch(
       "https://rickandmortyapi.com/api/character?page=" + page
