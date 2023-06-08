@@ -3,6 +3,7 @@ import { createButton } from "./components/nav-button/nav-button.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 
+const main = document.querySelector("main");
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -106,6 +107,7 @@ async function fetchCharaters(page, urlParameter) {
 
       maxPage = data.info.pages;
       pagination.textContent = `${page} / ${maxPage}`;
+      main.scrollTop = 0;
     } else {
       console.error("Bad Response");
 
