@@ -1,4 +1,4 @@
-export function createSearchBar({ onSubmit }) {
+export function createSearchBar({ placeholder, ariaLabel, onSubmit }) {
   const newSearchBar = document.createElement("form");
   newSearchBar.classList.add("search-bar");
   newSearchBar.addEventListener("submit", onSubmit);
@@ -7,8 +7,8 @@ export function createSearchBar({ onSubmit }) {
         name="query"
         class="search-bar__input"
         type="text"
-        placeholder="search characters"
-        aria-label="character name"
+        placeholder="${placeholder}"
+        aria-label="${ariaLabel}"
     />
     <button class="search-bar__button" aria-label="search for character">
         <img

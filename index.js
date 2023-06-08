@@ -20,7 +20,7 @@ let urlParameter = {
 // Create Elements
 
 const prevButton = createButton({
-  text: "previousss",
+  text: "previous",
   classes: ["button--prev"],
   onClick: () => {
     if (page > 1) {
@@ -32,7 +32,7 @@ const prevButton = createButton({
 });
 
 const nextButton = createButton({
-  text: "nexttt",
+  text: "next",
   classes: ["button--next"],
   onClick: () => {
     if (page < maxPage) {
@@ -48,6 +48,8 @@ const pagination = createPagination({
 });
 
 const searchBar = createSearchBar({
+  placeholder: "search characters",
+  ariaLabel: "character name",
   onSubmit: (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
