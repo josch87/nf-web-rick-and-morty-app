@@ -1,8 +1,10 @@
 export function createCharacterCard(props) {
   const newCard = document.createElement("li");
   newCard.classList.add("card");
+  let typeClass = "";
   if (!props.type) {
     props.type = "/";
+    typeClass = " card__info-description--nodata";
   }
   newCard.innerHTML = `
     <div class="card__image-container">
@@ -21,7 +23,7 @@ export function createCharacterCard(props) {
         <dt class="card__info-title">Species</dt>
         <dd class="card__info-description">${props.species}</dd>
         <dt class="card__info-title">Type</dt>
-        <dd class="card__info-description">${props.type}</dd>
+        <dd class="card__info-description${typeClass}">${props.type}</dd>
         <dt class="card__info-title">Gender</dt>
         <dd class="card__info-description">${props.gender}</dd>
         <dt class="card__info-title">Origin</dt>

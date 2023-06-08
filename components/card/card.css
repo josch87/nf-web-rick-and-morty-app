@@ -46,3 +46,7 @@
   text-align: right;
   background-color: var(--color-water-10);
 }
+
+.card__info-description--nodata {
+  color: #a5a5a5;
+}
