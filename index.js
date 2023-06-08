@@ -21,12 +21,18 @@ let urlParameter = {
 
 const prevButton = createButton({
   text: "previous",
-  classes: ["button--prev"],
+  classes: ["button--prev", "button--disabled"],
   onClick: () => {
     if (page > 1) {
       page--;
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
+    }
+    if (page <= 1) {
+      prevButton.classList.add("button--disabled");
+    }
+    if (page < maxPage) {
+      nextButton.classList.remove("button--disabled");
     }
   },
 });
@@ -39,6 +45,12 @@ const nextButton = createButton({
       page++;
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
+    }
+    if (page > 1) {
+      prevButton.classList.remove("button--disabled");
+    }
+    if (page >= maxPage) {
+      nextButton.classList.add("button--disabled");
     }
   },
 });
