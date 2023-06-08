@@ -18,8 +18,16 @@ export function createCharacterCard(props) {
       <dl class="card__info">
         <dt class="card__info-title">Status</dt>
         <dd class="card__info-description">${props.status}</dd>
+        <dt class="card__info-title">Species</dt>
+        <dd class="card__info-description">${props.species}</dd>
         <dt class="card__info-title">Type</dt>
         <dd class="card__info-description">${props.type}</dd>
+        <dt class="card__info-title">Gender</dt>
+        <dd class="card__info-description">${props.gender}</dd>
+        <dt class="card__info-title">Origin</dt>
+        <dd class="card__info-description">${props.origin.name}</dd>
+        <dt class="card__info-title">Location</dt>
+        <dd class="card__info-description">${props.location.name}</dd>
         <dt class="card__info-title">Occurrences</dt>
         <dd class="card__info-description">${props.episode.length}</dd>
       </dl>
