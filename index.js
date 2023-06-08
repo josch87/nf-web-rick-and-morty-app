@@ -13,13 +13,31 @@ const pagination = document.querySelector('[data-js="pagination"]');
 // States
 let maxPage = 1;
 let page = 1;
-const searchQuery = "";
+let searchQuery = "";
+let urlParameter = {
+  page: `page=${page}`,
+};
 
-async function fetchCharaters(page) {
+function getUrl(props) {
+  let url = "https://rickandmortyapi.com/api/character";
+
+  //if (props.page) {
+  url += `?${props.page}`;
+  //}
+
+  if (props.name) {
+    url += `&${props.name}`;
+  }
+
+  // console.log(urlParameter);
+  // console.log(url);
+
+  return url;
+}
+
+async function fetchCharaters(page, urlParameter) {
   try {
-    const response = await fetch(
-      "https://rickandmortyapi.com/api/character?page=" + page
-    );
+    const response = await fetch(getUrl(urlParameter));
 
     if (response.ok) {
       const data = await response.json();
@@ -34,26 +52,47 @@ async function fetchCharaters(page) {
       pagination.textContent = `${page} / ${maxPage}`;
     } else {
       console.error("Bad Response");
+
+      const data = await response.json();
+
+      if (data.error === "There is nothing here") {
+        cardContainer.innerHTML = "There are no search results. ";
+        page = 0;
+        maxPage = 0;
+        pagination.textContent = `${page} / ${maxPage}`;
+      }
     }
   } catch (error) {
     console.error("Did not get a positive response from API.", error);
   }
 }
 
-fetchCharaters(page);
+fetchCharaters(page, urlParameter);
 
 prevButton.addEventListener("click", () => {
   if (page > 1) {
     page--;
-    console.log("prevPage:", page);
-    fetchCharaters(page);
+    urlParameter.page = `page=${page}`;
+    fetchCharaters(page, urlParameter);
   }
 });
 
 nextButton.addEventListener("click", () => {
   if (page < maxPage) {
     page++;
-    console.log("nextPage:", page);
-    fetchCharaters(page);
+    urlParameter.page = `page=${page}`;
+    fetchCharaters(page, urlParameter);
   }
+});
+
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
+
+  searchQuery = data.query;
+  page = 1;
+  urlParameter.page = `page=${page}`;
+  urlParameter.name = `name=${searchQuery}`;
+  fetchCharaters(page, urlParameter);
 });
