@@ -6,7 +6,4 @@ export function createButton({ text, classes = [], onClick }) {
   newButton.addEventListener("click", onClick);
 
   return newButton;
-  // <button class="button button--prev" data-js="button-prev">
-  //     previous
-  //   </button>
 }
