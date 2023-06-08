@@ -1,6 +1,6 @@
 export function createCharacterCard(props) {
   const newCard = document.createElement("li");
-  newCard.classList.add("card");
+  newCard.classList.add("card", "animate__animated", "animate__fadeIn");
 
   let typeClass = "";
   let genderIcon = "";
