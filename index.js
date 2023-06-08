@@ -3,6 +3,8 @@ import { createButton } from "./components/nav-button/nav-button.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 
+const main = document.querySelector('[data-js="main"]');
+const headerTitle = document.querySelector('[data-js="headerTitle"]');
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -17,16 +19,27 @@ let urlParameter = {
   page: `page=${page}`,
 };
 
+function resetUrlParameter() {
+  urlParameter.page = "";
+  urlParameter.name = "";
+}
+
 // Create Elements
 
 const prevButton = createButton({
   text: "previous",
-  classes: ["button--prev"],
+  classes: ["button--prev", "button--disabled"],
   onClick: () => {
     if (page > 1) {
       page--;
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
+    }
+    if (page <= 1) {
+      prevButton.classList.add("button--disabled");
+    }
+    if (page < maxPage) {
+      nextButton.classList.remove("button--disabled");
     }
   },
 });
@@ -39,6 +52,12 @@ const nextButton = createButton({
       page++;
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
+    }
+    if (page > 1) {
+      prevButton.classList.remove("button--disabled");
+    }
+    if (page >= maxPage) {
+      nextButton.classList.add("button--disabled");
     }
   },
 });
@@ -57,6 +76,7 @@ const searchBar = createSearchBar({
 
     searchQuery = data.query;
     page = 1;
+    resetUrlParameter();
     urlParameter.page = `page=${page}`;
     urlParameter.name = `name=${searchQuery}`;
     fetchCharaters(page, urlParameter);
@@ -81,6 +101,8 @@ function getUrl(props) {
 
 async function fetchCharaters(page, urlParameter) {
   try {
+    //console.log(getUrl(urlParameter));
+
     const response = await fetch(getUrl(urlParameter));
 
     if (response.ok) {
@@ -94,6 +116,7 @@ async function fetchCharaters(page, urlParameter) {
 
       maxPage = data.info.pages;
       pagination.textContent = `${page} / ${maxPage}`;
+      main.scrollTop = 0;
     } else {
       console.error("Bad Response");
 
@@ -112,3 +135,10 @@ async function fetchCharaters(page, urlParameter) {
 }
 
 fetchCharaters(page, urlParameter);
+
+headerTitle.addEventListener("click", () => {
+  page = 1;
+  resetUrlParameter();
+  urlParameter.page = `page=${page}`;
+  fetchCharaters(page, urlParameter);
+});

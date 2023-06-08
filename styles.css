@@ -2,6 +2,7 @@
 @import "components/search-bar/search-bar.css";
 @import "components/nav-button/nav-button.css";
 @import "components/nav-pagination/nav-pagination.css";
+@import "node_modules/@fortawesome/fontawesome-free/css/all.css";
 
 *,
 *::before,
@@ -16,6 +17,7 @@
   --color-granite: #252629;
   --color-water-10: #f3f5f9;
   --color-foam: #ffffff;
+  --color-btn-disabled: #a5a5a5;
 }
 
 body {
