@@ -1,11 +1,33 @@
 export function createCharacterCard(props) {
   const newCard = document.createElement("li");
   newCard.classList.add("card");
+
   let typeClass = "";
+  let genderIcon = "";
+
   if (!props.type) {
     props.type = "/";
     typeClass = " card__info-description--nodata";
   }
+  if (!props.gender) {
+    console.log("No gender available");
+  } else if (props.gender === "Male") {
+    genderIcon = `
+      <span class="card__gender-icon">
+        <i class="fa-solid fa-mars" style="color: #0056eb;"></i>
+      </span>`;
+  } else if (props.gender === "Female") {
+    genderIcon = `
+      <span class="card__gender-icon">
+      <i class="fa-solid fa-venus" style="color: #eb0089;"></i>
+      </span>`;
+  } else if (props.gender === "Genderless") {
+    genderIcon = `
+      <span class="card__gender-icon">
+        <i class="fa-solid fa-genderless" style="color: #33c10b;"></i>
+      </span>`;
+  }
+
   newCard.innerHTML = `
     <div class="card__image-container">
       <img
@@ -25,7 +47,7 @@ export function createCharacterCard(props) {
         <dt class="card__info-title">Type</dt>
         <dd class="card__info-description${typeClass}">${props.type}</dd>
         <dt class="card__info-title">Gender</dt>
-        <dd class="card__info-description">${props.gender}</dd>
+        <dd class="card__info-description">${genderIcon}${props.gender}</dd>
         <dt class="card__info-title">Origin</dt>
         <dd class="card__info-description">${props.origin.name}</dd>
         <dt class="card__info-title">Location</dt>

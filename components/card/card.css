@@ -50,3 +50,7 @@
 .card__info-description--nodata {
   color: #a5a5a5;
 }
+
+.card__gender-icon {
+  margin-right: 2px;
+}
