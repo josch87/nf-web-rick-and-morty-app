@@ -142,3 +142,7 @@ headerTitle.addEventListener("click", () => {
   urlParameter.page = `page=${page}`;
   fetchCharaters(page, urlParameter);
 });
+
+headerTitle.addEventListener("dblclick", () => {
+  headerTitle.classList.add("animate__animated", "animate__hinge");
+});
