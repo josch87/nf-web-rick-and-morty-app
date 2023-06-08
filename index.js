@@ -141,6 +141,7 @@ headerTitle.addEventListener("click", () => {
   resetUrlParameter();
   urlParameter.page = `page=${page}`;
   fetchCharaters(page, urlParameter);
+  searchBar.reset();
 });
 
 headerTitle.addEventListener("dblclick", () => {
