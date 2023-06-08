@@ -8,6 +8,7 @@
 
 .button:hover {
   background-color: var(--color-nemo);
+  cursor: pointer;
 }
 
 .button--disabled {
@@ -16,4 +17,5 @@
 
 .button--disabled:hover {
   background-color: var(--color-water-10);
+  cursor: default;
 }
