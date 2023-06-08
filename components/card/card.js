@@ -1,6 +1,9 @@
 export function createCharacterCard(props) {
   const newCard = document.createElement("li");
   newCard.classList.add("card");
+  if (!props.type) {
+    props.type = "/";
+  }
   newCard.innerHTML = `
     <div class="card__image-container">
       <img
