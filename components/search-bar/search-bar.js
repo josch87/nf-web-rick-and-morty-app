@@ -4,18 +4,14 @@ export function createSearchBar({ placeholder, ariaLabel, onSubmit }) {
   newSearchBar.addEventListener("submit", onSubmit);
   newSearchBar.innerHTML = `
     <input
-        name="query"
-        class="search-bar__input"
-        type="text"
-        placeholder="${placeholder}"
-        aria-label="${ariaLabel}"
+      name="query"
+      class="search-bar__input"
+      type="text"
+      placeholder="${placeholder}"
+      aria-label="${ariaLabel}"
     />
     <button class="search-bar__button" aria-label="search for character">
-        <img
-            class="search-bar__icon"
-            src="assets/magnifying-glass.png"
-            alt=""
-        />
+      <i class="fa-solid fa-magnifying-glass" style="color: #ffffff; font-size: 24px;"></i>
     </button>
 `;
 
