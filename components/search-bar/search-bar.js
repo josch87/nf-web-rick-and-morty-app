@@ -13,7 +13,7 @@ export function createSearchBar({ placeholder, ariaLabel, onSubmit }) {
     <button class="search-bar__button" aria-label="search for character">
         <img
             class="search-bar__icon"
-            src="./assets/magnifying-glass.png"
+            src="assets/magnifying-glass.png"
             alt=""
         />
     </button>
