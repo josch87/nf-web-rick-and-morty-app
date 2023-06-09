@@ -11,7 +11,7 @@ export function createSearchBar({ placeholder, ariaLabel, onSubmit }) {
         aria-label="${ariaLabel}"
     />
     <button class="search-bar__button" aria-label="search for character">
-    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+    <i class="fa-solid fa-magnifying-glass" style="color: #ffffff; font-size: 24px;"></i>
 
     </button>
 `;
