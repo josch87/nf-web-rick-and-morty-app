@@ -2,11 +2,10 @@
   "name": "recap-project-3_rick-and-morty-app",
   "version": "0.0.0-unreleased",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "lint": "npx eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build"
+    "build": "parcel build ./index.html"
   },
   "nf": {
     "template": "html-css-js-static"
