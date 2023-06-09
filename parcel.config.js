@@ -3,5 +3,5 @@ module.exports = {
   // ...
   // ...
   // Definiere den Asset-Glob für die Datei, die immer deployed werden soll
-  includeFiles: ["/assets/magnifying-glass.png"],
+  includeFiles: ["./assets/magnifying-glass.png"],
 };
