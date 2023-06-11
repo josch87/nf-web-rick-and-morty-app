@@ -35,12 +35,6 @@ const prevButton = createButton({
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
     }
-    if (page <= 1) {
-      prevButton.classList.add("button--disabled");
-    }
-    if (page < maxPage) {
-      nextButton.classList.remove("button--disabled");
-    }
   },
 });
 
@@ -52,12 +46,6 @@ const nextButton = createButton({
       page++;
       urlParameter.page = `page=${page}`;
       fetchCharaters(page, urlParameter);
-    }
-    if (page > 1) {
-      prevButton.classList.remove("button--disabled");
-    }
-    if (page >= maxPage) {
-      nextButton.classList.add("button--disabled");
     }
   },
 });
@@ -116,6 +104,20 @@ async function fetchCharaters(page, urlParameter) {
 
       maxPage = data.info.pages;
       pagination.textContent = `${page} / ${maxPage}`;
+
+      if (page <= 1) {
+        prevButton.classList.add("button--disabled");
+      }
+      if (page > 1) {
+        prevButton.classList.remove("button--disabled");
+      }
+      if (page >= maxPage) {
+        nextButton.classList.add("button--disabled");
+      }
+      if (page < maxPage) {
+        nextButton.classList.remove("button--disabled");
+      }
+
       main.scrollTop = 0;
     } else {
       console.error("Bad Response");
@@ -127,6 +129,8 @@ async function fetchCharaters(page, urlParameter) {
         page = 0;
         maxPage = 0;
         pagination.textContent = `${page} / ${maxPage}`;
+        nextButton.classList.add("button--disabled");
+        prevButton.classList.add("button--disabled");
       }
     }
   } catch (error) {
@@ -141,6 +145,7 @@ headerTitle.addEventListener("click", () => {
   resetUrlParameter();
   urlParameter.page = `page=${page}`;
   fetchCharaters(page, urlParameter);
+  searchBar.reset();
 });
 
 headerTitle.addEventListener("dblclick", () => {
