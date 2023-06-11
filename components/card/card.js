@@ -2,13 +2,27 @@ export function createCharacterCard(props) {
   const newCard = document.createElement("li");
   newCard.classList.add("card", "animate__animated", "animate__fadeIn");
 
+  let statusClass = "";
+  let speciesClass = "";
   let typeClass = "";
   let genderIcon = "";
+  let genderClass = "";
+  let originClass = "";
+  let locationClass = "";
+
+  if (props.status === "unknown") {
+    statusClass = " card__info-description--nodata";
+  }
+
+  if (props.species === "unknown") {
+    speciesClass = " card__info-description--nodata";
+  }
 
   if (!props.type) {
     props.type = "/";
     typeClass = " card__info-description--nodata";
   }
+
   if (!props.gender) {
     console.log("No gender available");
   } else if (props.gender === "Male") {
@@ -26,6 +40,16 @@ export function createCharacterCard(props) {
       <span class="card__gender-icon">
         <i class="fa-solid fa-genderless" style="color: #33c10b;"></i>
       </span>`;
+  } else if (props.gender === "unknown") {
+    genderClass = " card__info-description--nodata";
+  }
+
+  if (props.origin.name === "unknown") {
+    originClass = " card__info-description--nodata";
+  }
+
+  if (props.location.name === "unknown") {
+    locationClass = " card__info-description--nodata";
   }
 
   newCard.innerHTML = `
@@ -41,17 +65,17 @@ export function createCharacterCard(props) {
       <h2 class="card__title">${props.name}</h2>
       <dl class="card__info">
         <dt class="card__info-title">Status</dt>
-        <dd class="card__info-description">${props.status}</dd>
+        <dd class="card__info-description${statusClass}">${props.status}</dd>
         <dt class="card__info-title">Species</dt>
-        <dd class="card__info-description">${props.species}</dd>
+        <dd class="card__info-description${speciesClass}">${props.species}</dd>
         <dt class="card__info-title">Type</dt>
         <dd class="card__info-description${typeClass}">${props.type}</dd>
         <dt class="card__info-title">Gender</dt>
-        <dd class="card__info-description">${genderIcon}${props.gender}</dd>
+        <dd class="card__info-description${genderClass}">${genderIcon}${props.gender}</dd>
         <dt class="card__info-title">Origin</dt>
-        <dd class="card__info-description">${props.origin.name}</dd>
+        <dd class="card__info-description${originClass}">${props.origin.name}</dd>
         <dt class="card__info-title">Location</dt>
-        <dd class="card__info-description">${props.location.name}</dd>
+        <dd class="card__info-description${locationClass}">${props.location.name}</dd>
         <dt class="card__info-title">Occurrences</dt>
         <dd class="card__info-description">${props.episode.length}</dd>
       </dl>
